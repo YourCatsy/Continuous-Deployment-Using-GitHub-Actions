@@ -18,7 +18,7 @@ jobs:
       - name: Setup Minikube
         uses: medyagh/setup-minikube@master
         with:
-          node-version: '20'
+          minikube-version: 'latest'
 
       - name: Try the cluster!
         run: kubectl get pods -A
