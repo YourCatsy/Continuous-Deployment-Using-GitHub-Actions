@@ -18,6 +18,11 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Setup .NET  # Ensure the latest version of setup-dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '7.x'  # Update to the latest version needed for your project
+
       - name: Setup Minikube
         uses: medyagh/setup-minikube@master  # Ensure the correct version is used
         with:
