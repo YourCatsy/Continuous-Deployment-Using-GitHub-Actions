@@ -11,10 +11,10 @@ jobs:
     name: Build Node.js Docker Image and deploy to Minikube
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3  # Ensure the latest version is used
+        uses: actions/checkout@v4  # Ensure the latest version is used
 
       - name: Setup Node.js 20  # Explicitly set up Node.js 20
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
 
