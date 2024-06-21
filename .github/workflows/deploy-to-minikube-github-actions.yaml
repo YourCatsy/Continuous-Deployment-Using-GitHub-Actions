@@ -21,25 +21,22 @@ jobs:
       - name: Verify Node.js version  # Verify the Node.js version
         run: node -v
 
-      - name: Setup .NET  # Ensure the latest version of setup-dotnet
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '7.x'  # Update to the latest version needed for your project
-
       - name: Setup Minikube
         uses: medyagh/setup-minikube@master  # Ensure the correct version is used
         with:
           minikube-version: 'latest'
 
-      - name: Try the cluster!
-        run: kubectl get pods -A
+      - name: Start Minikube
+        run: minikube start --driver=docker
+
+      - name: Set up Docker environment
+        run: eval $(minikube docker-env)
+
+      - name: Verify Minikube status
+        run: minikube status
 
       - name: Build Docker image
         run: |
-          export DOCKER_TLS_VERIFY="1"
-          export DOCKER_HOST="tcp://127.0.0.1:60952"
-          export DOCKER_CERT_PATH="/mnt/c/Users/Asus/.minikube/certs"
-          export MINIKUBE_ACTIVE_DOCKERD="minikube"
           docker build -f ./Dockerfile -t devopshint/node-app:latest .
           echo "verifying images:"
           docker images
@@ -47,11 +44,7 @@ jobs:
       - name: Deploy to Minikube
         run: kubectl apply -f k8s-node-app.yaml
 
-      - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5  # Updated to the latest version
-
       - name: Test service URLs
         run: |
           minikube service list
           minikube service nodejs-app --url
-
