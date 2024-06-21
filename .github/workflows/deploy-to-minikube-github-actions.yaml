@@ -11,12 +11,10 @@ jobs:
     name: Build Node.js Docker Image and deploy to Minikube
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-        with:  # Corrected indentation
-          node-version: '20'
+        uses: actions/checkout@v3  # Update to the latest version
 
       - name: Setup Minikube
-        uses: medyagh/setup-minikube@master
+        uses: medyagh/setup-minikube@v2  # Ensure using the latest compatible version
         with:
           minikube-version: 'latest'
 
