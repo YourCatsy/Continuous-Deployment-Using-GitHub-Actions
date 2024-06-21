@@ -8,8 +8,12 @@ jobs:
     name: build Node.js Docker Image and deploy to minikube
     steps:
     - uses: actions/checkout@v2
+	with:
+	node-version: '20'
     - name: Start minikube
       uses: medyagh/setup-minikube@master
+	with:
+          node-version: '20'
     - name: Try the cluster!
       run: kubectl get pods -A
     - name: Build image
