@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Verify Node.js version  # Verify the Node.js version
+        run: node -v
+
       - name: Setup .NET  # Ensure the latest version of setup-dotnet
         uses: actions/setup-dotnet@v4
         with:
@@ -51,3 +54,4 @@ jobs:
         run: |
           minikube service list
           minikube service nodejs-app --url
+
