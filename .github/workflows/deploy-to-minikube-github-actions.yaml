@@ -44,6 +44,9 @@ jobs:
       - name: Deploy to Minikube
         run: kubectl apply -f k8s-node-app.yaml
 
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5  # Updated to the latest version
+
       - name: Test service URLs
         run: |
           minikube service list
