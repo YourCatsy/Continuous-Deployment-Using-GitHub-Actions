@@ -13,8 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3  # Update to the latest version
 
+      - name: Setup Node.js 20  # Explicitly setup Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
       - name: Setup Minikube
-        uses: medyagh/setup-minikube@master  # Revert to using the master branch
+        uses: medyagh/setup-minikube@master  # Use the master branch
         with:
           minikube-version: 'latest'
 
