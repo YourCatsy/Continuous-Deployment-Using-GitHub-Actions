@@ -5,22 +5,23 @@ metadata:
   name: nodejs-app
   namespace: default
   labels:
-    app: nodejs-app
+    app: nodejs-app  # Метка должна совпадать с selector в Service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nodejs-app
+      app: nodejs-app  # Селектор для подбора подов
   template:
     metadata:
       labels:
-        app: nodejs-app
+        app: nodejs-app  # Метка для пода
     spec:
       containers:
       - name: nodejs-app
         image: "devopshint/node-app:latest"
         ports:
           - containerPort: 3000
+
 ---
 apiVersion: v1
 kind: Service
@@ -29,7 +30,7 @@ metadata:
   namespace: default
 spec:
   selector:
-    app: nodejs-app
+    app: nodejs-app  # Селектор для поиска подов, обслуживаемых сервисом
   type: NodePort
   ports:
   - name: http
