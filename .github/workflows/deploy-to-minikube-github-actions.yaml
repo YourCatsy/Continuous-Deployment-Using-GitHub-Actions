@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-	with:
+        with:  # Corrected indentation
           node-version: '20'
 
       - name: Setup Minikube
@@ -40,4 +40,3 @@ jobs:
         run: |
           minikube service list
           minikube service nodejs-app --url
-
